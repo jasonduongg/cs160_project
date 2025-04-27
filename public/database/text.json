@@ -1,7 +1,14 @@
-[
-  {
-    "title": "Entry 1",
-    "message": "This is my first entry",
-    "timestamp": "2025-04-27T20:17:50.872Z"
-  }
-]
+{
+  "entries": [
+    {
+      "title": "asdasda",
+      "content": "dasdasdad",
+      "timestamp": "2025-04-27T23:37:54.009Z"
+    },
+    {
+      "title": "dasd",
+      "content": "asdada",
+      "timestamp": "2025-04-27T23:38:55.288Z"
+    }
+  ]
+}

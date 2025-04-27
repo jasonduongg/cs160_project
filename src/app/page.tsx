@@ -1,12 +1,10 @@
 'use client';
 
 import { useState } from 'react';
-
-import Link from 'next/link';
 import { FaMicrophone } from 'react-icons/fa';
+import Navbar from '@/components/Navbar';
 
 export default function Home() {
-
   const [message, setMessage] = useState("");
   const [title, setTitle] = useState("");
 
@@ -35,35 +33,15 @@ export default function Home() {
 
   return (
     <div className="h-full flex flex-col">
+      <Navbar title="Home" />
       <div className="flex-1 bg-gray-400 mx-auto w-full">
         <div className="text-center mb-16">
           <h1 className="text-5xl font-bold text-black mb-4">
-
           </h1>
           <p className="text-xl text-black max-w-2xl mx-auto">
             Welcome to Your Digital Assistant
           </p>
         </div>
-
-        <ul className="space-y-4">
-          <li>
-            <Link href="/create" className="block p-4 bg-white text-black rounded-lg shadow hover:shadow-md transition-shadow">
-              Create New Entry
-            </Link>
-          </li>
-          <li>
-            <Link href="/catalogs" className="block p-4 bg-white text-black rounded-lg shadow hover:shadow-md transition-shadow">
-              Browse Catalogs
-            </Link>
-          </li>
-          <li>
-            <Link href="/landing" className="block p-4 bg-white text-black rounded-lg shadow hover:shadow-md transition-shadow">
-              Landing
-            </Link>
-          </li>
-
-
-        </ul>
       </div>
 
       <p>{message}</p>

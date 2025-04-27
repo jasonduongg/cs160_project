@@ -5,7 +5,7 @@ import { useEffect, useState } from 'react';
 
 interface Entry {
   title: string;
-  message: string;
+  content: string;
   timestamp: string;
 }
 
@@ -15,7 +15,7 @@ export default function CatalogsPage() {
   useEffect(() => {
     fetch('/database/text.json')
       .then(response => response.json())
-      .then(data => setEntries(data))
+      .then(data => setEntries(data.entries || []))
       .catch(error => console.error('Error loading entries:', error));
   }, []);
 
@@ -59,7 +59,7 @@ export default function CatalogsPage() {
                 {entry.title}
               </h2>
               <p className="text-xs text-gray-600 leading-snug line-clamp-2">
-                {entry.message}
+                {entry.content}
               </p>
               <p className="text-xs text-gray-500 mt-1">
                 {new Date(entry.timestamp).toLocaleDateString()}
