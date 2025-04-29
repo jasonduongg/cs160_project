@@ -16,10 +16,10 @@ const Navbar = ({ title = 'Digital Assistant' }: NavbarProps) => {
     };
 
     return (
-        <nav className="bg-gray-800 text-white p-2 relative">
+        <nav className="text-black bg-white p-2 relative">
             <div className="flex justify-between items-center">
                 <div className="w-10"></div> {/* Spacer for balance */}
-                <h1 className="text-lg font-medium">{title}</h1>
+                <h1 className="text-2xl font-bold">{title}</h1>
                 {/* Hamburger Menu Button */}
                 <button
                     onClick={toggleMenu}
@@ -31,7 +31,7 @@ const Navbar = ({ title = 'Digital Assistant' }: NavbarProps) => {
 
                 {/* Mobile Menu */}
                 <div
-                    className={`absolute top-full right-0 w-48 bg-gray-800 p-2 shadow-lg z-40 transition-all duration-300 ease-in-out transform ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 pointer-events-none'
+                    className={`absolute top-full right-0 w-48 bg-white p-2 shadow-lg z-40 transition-all duration-300 ease-in-out transform ${isOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-2 pointer-events-none'
                         }`}
                 >
                     <div className="flex flex-col space-y-1">

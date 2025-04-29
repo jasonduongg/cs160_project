@@ -1,11 +1,12 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs';
-import path from 'path';
+import { readFile, writeFile } from 'fs/promises';
+import { join } from 'path';
 
 interface Entry {
     id: string;
     title: string;
     content: string;
+    imagePath?: string;
     timestamp: string;
 }
 
@@ -19,30 +20,31 @@ function generateId(): string {
 
 export async function POST(request: Request) {
     try {
-        const { title, content } = await request.json();
-        const filePath = path.join(process.cwd(), 'public', 'database', 'text.json');
+        const { title, content, imagePath } = await request.json();
 
         // Read existing entries
-        let entries: Entries = { entries: [] };
-        if (fs.existsSync(filePath)) {
-            const fileContent = fs.readFileSync(filePath, 'utf-8');
-            entries = JSON.parse(fileContent);
-        }
+        const filePath = join(process.cwd(), 'public', 'database', 'text.json');
+        const fileContent = await readFile(filePath, 'utf-8');
+        const entries = JSON.parse(fileContent);
 
-        // Add new entry with ID
+        // Add new entry
         entries.entries.push({
             id: generateId(),
             title,
             content,
+            imagePath: imagePath || null,
             timestamp: new Date().toISOString()
         });
 
-        // Write back to file
-        fs.writeFileSync(filePath, JSON.stringify(entries, null, 2));
+        // Save updated entries
+        await writeFile(filePath, JSON.stringify(entries, null, 2));
 
         return NextResponse.json({ success: true });
     } catch (error) {
         console.error('Error saving entry:', error);
-        return NextResponse.json({ error: 'Failed to save entry' }, { status: 500 });
+        return NextResponse.json(
+            { error: 'Error saving entry' },
+            { status: 500 }
+        );
     }
 } 
