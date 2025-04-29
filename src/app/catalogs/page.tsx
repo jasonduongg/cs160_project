@@ -2,8 +2,10 @@
 
 import { Search, Home } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 
 interface Entry {
+  id: string;
   title: string;
   content: string;
   timestamp: string;
@@ -40,8 +42,9 @@ export default function CatalogsPage() {
       {/* Grid of cards */}
       <div className="grid grid-cols-2 gap-6">
         {entries.map((entry, index) => (
-          <div
-            key={index}
+          <Link
+            href={`/entries/${entry.id}`}
+            key={entry.id}
             className={`aspect-square rounded-3xl overflow-hidden bg-white shadow-md transform ${rotations[index % rotations.length]} hover:scale-105 transition-transform duration-200 flex flex-col`}
           >
             {/* Image section */}
@@ -65,7 +68,7 @@ export default function CatalogsPage() {
                 {new Date(entry.timestamp).toLocaleDateString()}
               </p>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </main>
