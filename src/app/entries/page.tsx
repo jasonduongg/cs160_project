@@ -40,7 +40,7 @@ export default function CatalogsPage() {
 
   return (
     <main className="relative min-h-screen bg-[#f9f9f6] text-gray-800 px-4 pt-8 pb-6">
-      <Header title="Entries" />
+      <Header showBack={true} />
 
       {/* Search Bar */}
       <div className="relative mb-6 mt-4">

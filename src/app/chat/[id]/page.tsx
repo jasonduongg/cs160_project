@@ -3,6 +3,7 @@
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import Header from '@/components/Header';
+import Navbar from '@/components/Navbar';
 
 interface Message {
   sender: 'user' | 'ai';
@@ -93,7 +94,7 @@ export default function EntryChatPage() {
 
   return (
     <>
-      <Header showBack />
+      <Header showBack={true} />
       <main className="bg-[#f9f9f6] text-gray-800 px-4 pb-24 pt-24 max-w-sm mx-auto flex flex-col min-h-screen">
         {/* Freud Droid avatar + personality */}
         <div className="flex flex-col items-center mb-4">
@@ -144,9 +145,8 @@ export default function EntryChatPage() {
           {messages.map((msg, i) => (
             <div
               key={i}
-              className={`p-3 rounded-lg text-sm max-w-xs ${
-                msg.sender === 'user' ? 'bg-blue-100 self-end' : 'bg-gray-200 self-start'
-              }`}
+              className={`p-3 rounded-lg text-sm max-w-xs ${msg.sender === 'user' ? 'bg-blue-100 self-end' : 'bg-gray-200 self-start'
+                }`}
             >
               {msg.text}
             </div>
