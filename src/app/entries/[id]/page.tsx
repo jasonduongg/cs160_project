@@ -95,9 +95,8 @@ export default function EntryPage() {
   if (error) return <main className="p-4 text-red-500">{error}</main>;
 
   return (
-    <main className="bg-[#f9f9f6] min-h-screen text-gray-800 px-4 pt-8 pb-12">
-      <Header showBack />
-
+    <div className="">
+      <Header />
       <Toaster position="top-center" />
 
       {mood && (
@@ -106,7 +105,7 @@ export default function EntryPage() {
         </p>
       )}
 
-      <article className="max-w-2xl mx-auto">
+      <div className="max-w-2xl mx-auto">
         {/* Title */}
         <div className="flex items-center justify-between mb-2">
           {isEditingTitle ? (
@@ -198,7 +197,7 @@ export default function EntryPage() {
             <p className="whitespace-pre-wrap text-sm text-gray-800">{entry?.content}</p>
           )}
         </div>
-      </article>
-    </main>
+      </div>
+    </div>
   );
 }

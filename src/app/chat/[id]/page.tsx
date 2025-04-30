@@ -13,15 +13,15 @@ interface Message {
 function getFirstGreeting(entrySnippet: string, personality: string): string {
   switch (personality) {
     case 'supportive':
-      return `Thank you for sharing your thoughts: “${entrySnippet}...” How were you feeling when you wrote this?`;
+      return `Thank you for sharing your thoughts: " ${entrySnippet}... " How were you feeling when you wrote this?`;
     case 'rational':
-      return `Let's analyze your entry logically: “${entrySnippet}...” What thoughts led you here?`;
+      return `Let's analyze your entry logically: " ${entrySnippet}... " What thoughts led you here?`;
     case 'playful':
-      return `Ooh, juicy! “${entrySnippet}...” Tell me the wildest thing you were thinking!`;
+      return `Ooh, juicy! " ${entrySnippet}... " Tell me the wildest thing you were thinking!`;
     case 'motivational':
-      return `This is a step forward! “${entrySnippet}...” What strength were you tapping into?`;
+      return `This is a step forward! " ${entrySnippet}... " What strength were you tapping into?`;
     default:
-      return `Let's talk about your journal entry: “${entrySnippet}...” What was going through your mind?`;
+      return `Let's talk about your journal entry: " ${entrySnippet}... " What was going through your mind?`;
   }
 }
 
@@ -94,9 +94,9 @@ export default function EntryChatPage() {
 
   return (
     <>
-      <Header showBack={true} />
-      <main className="bg-[#f9f9f6] text-gray-800 px-4 pb-24 pt-24 max-w-sm mx-auto flex flex-col min-h-screen">
+      <main className="bg-[#f9f9f6] text-gray-800 px-4 pb-24 pt-16 max-w-sm mx-auto flex flex-col min-h-screen">
         {/* Freud Droid avatar + personality */}
+        <Header showBack={true} />
         <div className="flex flex-col items-center mb-4">
           <div className="w-16 h-16 rounded-full overflow-hidden border-4 border-blue-200 shadow-sm bg-white">
             <img src="/freud-avatar.png" alt="Freud Droid" className="object-contain w-full h-full p-1" />

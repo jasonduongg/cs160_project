@@ -62,7 +62,7 @@ export default function CatalogsPage() {
           <Link
             key={entry.id}
             href={`/entries/${entry.id}`}
-            className={`aspect-square rounded-3xl overflow-hidden bg-white shadow-md transform ${rotations[index % rotations.length]} hover:scale-105 transition-transform duration-200 flex flex-col`}
+            className={`aspect-square rounded-3xl overflow-hidden bg-white shadow-md transform ${rotations[index % rotations.length]} hover:scale-105 hover:rotate-[-2deg] hover:rotate-[2deg] transition-all duration-200 flex flex-col`}
           >
             {/* Image section */}
             <div className="h-[60%] w-full relative overflow-hidden">
