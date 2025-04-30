@@ -43,7 +43,7 @@ const Navbar = ({ title = 'Digital Assistant' }: NavbarProps) => {
                             Create New Entry
                         </Link>
                         <Link
-                            href="/catalogs"
+                            href="entries"
                             className="block py-2 px-3 hover:text-gray-300 transition-colors duration-200 font-medium"
                             onClick={() => setIsOpen(false)}
                         >

@@ -2,6 +2,7 @@
 
 import { useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
+import Header from '@/components/Header';
 
 interface Message {
   sender: 'user' | 'ai';
@@ -31,7 +32,7 @@ export default function EntryChatPage() {
   const [loading, setLoading] = useState(true);
   const [personality, setPersonality] = useState('supportive');
   const [initialGreeting, setInitialGreeting] = useState('');
-  const [showEntry, setShowEntry] = useState(true); // for collapsible entry
+  const [showEntry, setShowEntry] = useState(true);
 
   useEffect(() => {
     fetch('/database/text.json')
@@ -41,7 +42,6 @@ export default function EntryChatPage() {
         if (entry) {
           setEntryText(entry.content);
           setInitialGreeting(getFirstGreeting(entry.content.slice(0, 100), personality));
-          setMessages([]);
         }
         setLoading(false);
       })
@@ -83,97 +83,92 @@ export default function EntryChatPage() {
       setMessages(prev => [...prev, aiResponse]);
     } catch (err) {
       console.error('Chat error', err);
+      setMessages(prev => [...prev, { sender: 'ai', text: "Hmm, I'm having trouble responding right now." }]);
     }
   };
 
   if (loading) {
-    return <div className="p-4">Loading journal entry...</div>;
+    return <div className="p-4 text-center">Loading journal entry...</div>;
   }
 
   return (
-    <main className="max-w-2xl mx-auto p-4 flex flex-col h-screen">
-      {/* Top bar */}
-      <div className="flex items-center justify-between mb-4">
-        <button
-          onClick={() => history.back()}
-          className="text-sm text-blue-600 hover:underline"
-        >
-          ← Back to Entry
-        </button>
-        <h1 className="text-2xl font-bold">Reflective Chat</h1>
-        <select
-          value={personality}
-          onChange={(e) => setPersonality(e.target.value)}
-          className="text-sm border rounded px-2 py-1 bg-white"
-        >
-          <option value="supportive">Supportive</option>
-          <option value="rational">Rational</option>
-          <option value="playful">Playful</option>
-          <option value="motivational">Motivational</option>
-        </select>
-      </div>
+    <>
+      <Header showBack />
+      <main className="bg-[#f9f9f6] text-gray-800 px-4 pb-24 pt-24 max-w-sm mx-auto flex flex-col min-h-screen">
+        {/* Freud Droid avatar + personality */}
+        <div className="flex flex-col items-center mb-4">
+          <div className="w-16 h-16 rounded-full overflow-hidden border-4 border-blue-200 shadow-sm bg-white">
+            <img src="/freud-avatar.png" alt="Freud Droid" className="object-contain w-full h-full p-1" />
+          </div>
+          <div className="mt-2 text-sm text-gray-500 italic capitalize">
+            Freud Droid: {personality}
+          </div>
+        </div>
 
-      {/* Chat area */}
-      <div className="flex-1 overflow-y-auto space-y-4 mb-4">
-        {/* Collapsible Journal Entry */}
-        {entryText && (
-          <div className="p-4 rounded-md bg-yellow-50 border border-yellow-200 text-gray-700 italic text-sm">
-            <div className="flex items-center justify-between mb-2">
-              <h2 className="font-bold text-gray-800">Your Journal Entry</h2>
-              <button
-                onClick={() => setShowEntry(prev => !prev)}
-                className="text-xs text-blue-600 hover:underline"
-              >
-                {showEntry ? 'Hide' : 'Show'}
-              </button>
+        <div className="flex justify-center mb-4">
+          <select
+            value={personality}
+            onChange={(e) => setPersonality(e.target.value)}
+            className="text-sm border rounded px-3 py-1 bg-white shadow-sm"
+          >
+            <option value="supportive">Supportive</option>
+            <option value="rational">Rational</option>
+            <option value="playful">Playful</option>
+            <option value="motivational">Motivational</option>
+          </select>
+        </div>
+
+        {/* Chat area */}
+        <div className="flex-1 overflow-y-auto space-y-4 mb-4">
+          {entryText && (
+            <div className="p-4 rounded-md bg-yellow-50 border border-yellow-200 text-gray-700 italic text-sm">
+              <div className="flex items-center justify-between mb-2">
+                <h2 className="font-bold text-gray-800">Your Journal Entry</h2>
+                <button
+                  onClick={() => setShowEntry(prev => !prev)}
+                  className="text-xs text-blue-600 hover:underline"
+                >
+                  {showEntry ? 'Hide' : 'Show'}
+                </button>
+              </div>
+              {showEntry && <p className="whitespace-pre-wrap">{entryText}</p>}
             </div>
+          )}
+
+          {initialGreeting && (
+            <div className="p-3 rounded-lg bg-gray-200 text-sm max-w-xs self-start">
+              {initialGreeting}
+            </div>
+          )}
+
+          {messages.map((msg, i) => (
             <div
-              className={`overflow-hidden transition-all duration-300 ease-in-out ${
-                showEntry ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'
+              key={i}
+              className={`p-3 rounded-lg text-sm max-w-xs ${
+                msg.sender === 'user' ? 'bg-blue-100 self-end' : 'bg-gray-200 self-start'
               }`}
             >
-              <p className="whitespace-pre-wrap mt-2">{entryText}</p>
+              {msg.text}
             </div>
-          </div>
-        )}
+          ))}
+        </div>
 
-        {/* Initial AI greeting */}
-        {initialGreeting && (
-          <div className="p-3 rounded-md max-w-xs bg-gray-200 self-start">
-            {initialGreeting}
-          </div>
-        )}
-
-        {/* Chat messages */}
-        {messages.map((msg, i) => (
-          <div
-            key={i}
-            className={`p-3 rounded-md max-w-xs ${
-              msg.sender === 'user'
-                ? 'bg-blue-100 self-end'
-                : 'bg-gray-200 self-start'
-            }`}
+        {/* Input field */}
+        <div className="flex gap-2 border-t pt-2">
+          <input
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Talk about it..."
+            className="flex-1 px-3 py-2 border border-gray-300 rounded-md bg-white focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+          />
+          <button
+            onClick={handleSend}
+            className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition text-sm"
           >
-            {msg.text}
-          </div>
-        ))}
-      </div>
-
-      {/* Input field */}
-      <div className="flex gap-2 border-t pt-2">
-        <input
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-          placeholder="Talk about it..."
-          className="flex-1 border rounded px-3 py-2"
-        />
-        <button
-          onClick={handleSend}
-          className="bg-black text-white px-4 py-2 rounded"
-        >
-          Send
-        </button>
-      </div>
-    </main>
+            Send
+          </button>
+        </div>
+      </main>
+    </>
   );
 }
