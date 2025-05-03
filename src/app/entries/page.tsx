@@ -39,11 +39,11 @@ export default function CatalogsPage() {
   ];
 
   return (
-    <main className="relative min-h-screen bg-[#f9f9f6] text-gray-800 px-4 pt-8 pb-6">
+    <main className="relative h-screen w-full overflow-x-hidden bg-[#f9f9f6] text-gray-800 flex flex-col p-4">
       <Header showBack={true} />
 
       {/* Search Bar */}
-      <div className="relative mb-6 mt-4">
+      <div className="relative mb-6 mt-4 w-full max-w-[320px] mx-auto">
         <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
           <Search className="h-5 w-5 text-gray-400" />
         </div>
@@ -57,43 +57,45 @@ export default function CatalogsPage() {
       </div>
 
       {/* Grid of Entry Cards */}
-      <div className="grid grid-cols-2 gap-6">
-        {filteredEntries.map((entry, index) => (
-          <Link
-            key={entry.id}
-            href={`/entries/${entry.id}`}
-            className={`aspect-square rounded-3xl overflow-hidden bg-white shadow-md transform ${rotations[index % rotations.length]} hover:scale-105 hover:rotate-[-2deg] hover:rotate-[2deg] transition-all duration-200 flex flex-col`}
-          >
-            {/* Image section */}
-            <div className="h-[60%] w-full relative overflow-hidden">
-              <img
-                src={entry.imagePath || '/sausalito.jpeg'}
-                alt={entry.title}
-                className="object-cover w-full h-full"
-              />
-            </div>
+      <div className="flex-1 overflow-y-auto">
+        <div className="grid grid-cols-2 gap-6 max-w-[320px] mx-auto pt-6">
+          {filteredEntries.map((entry, index) => (
+            <Link
+              key={entry.id}
+              href={`/entries/${entry.id}`}
+              className={`aspect-square rounded-3xl overflow-hidden bg-white shadow-md transform ${rotations[index % rotations.length]} hover:scale-105 hover:rotate-[-2deg] hover:rotate-[2deg] transition-all duration-200 flex flex-col`}
+            >
+              {/* Image section */}
+              <div className="h-[60%] w-full relative overflow-hidden">
+                <img
+                  src={entry.imagePath || '/sausalito.jpeg'}
+                  alt={entry.title}
+                  className="object-cover w-full h-full"
+                />
+              </div>
 
-            {/* Text section */}
-            <div className="flex-1 p-3 flex flex-col justify-center">
-              <h2 className="text-black font-bold mb-1 truncate">
-                {entry.title}
-              </h2>
-              <p className="text-xs text-gray-600 leading-snug line-clamp-2">
-                {entry.content}
-              </p>
-              <p className="text-xs text-gray-500 mt-1">
-                {new Date(entry.timestamp).toLocaleString('en-US', {
-                  year: 'numeric',
-                  month: 'numeric',
-                  day: 'numeric',
-                  hour: 'numeric',
-                  minute: 'numeric',
-                  hour12: true,
-                })}
-              </p>
-            </div>
-          </Link>
-        ))}
+              {/* Text section */}
+              <div className="flex-1 p-3 flex flex-col justify-center">
+                <h2 className="text-black font-bold mb-1 truncate">
+                  {entry.title}
+                </h2>
+                <p className="text-xs text-gray-600 leading-snug line-clamp-2">
+                  {entry.content}
+                </p>
+                <p className="text-xs text-gray-500 mt-1">
+                  {new Date(entry.timestamp).toLocaleString('en-US', {
+                    year: 'numeric',
+                    month: 'numeric',
+                    day: 'numeric',
+                    hour: 'numeric',
+                    minute: 'numeric',
+                    hour12: true,
+                  })}
+                </p>
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
     </main>
   );

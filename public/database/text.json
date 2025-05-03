@@ -23,7 +23,7 @@
     {
       "id": "bgi8hugznu",
       "title": "yesyes",
-      "content": "This afternoon at the café, I somehow managed to knock over an entire tray of drinks—mine and two other customers'—just by trying to squeeze past a chair. The crash was so loud that everyone turned to stare, and in my panic, I made it worse by trying to apologize while frantically picking up ice cubes off the floor with my bare hands. The barista was nice about it, but I couldn’t shake the hot, prickly feeling of humiliation for the rest of the day. Looking back, I realize it wasn’t that big of a deal (accidents happen), but in the moment it felt like I had singlehandedly ruined the entire vibe of the café. I keep wondering why even small mistakes can feel so overwhelmingly huge when you're caught in them.",
+      "content": "This afternoon at the café, I somehow managed to knock over an entire tray of drinks. Mine and two other customers' drinks. Just by trying to squeeze past a chair. The crash was so loud that everyone turned to stare, and in my panic, I made it worse by trying to apologize while frantically picking up ice cubes off the floor.",
       "imagePath": null,
       "timestamp": "2025-04-29T22:26:39.827Z"
     },
@@ -37,9 +37,24 @@
     {
       "id": "ucc9dlm9hzs",
       "title": "The Distance",
-      "content": "I’ve been sitting with this heavy sadness today—the kind that sneaks up in quiet moments. I knew moving across the country for this job would be hard, but I didn’t expect the weight of it to feel so personal. There’s something about packing up the familiar—the kitchen table where we always gathered, the sound of my dad’s voice from the next room—that makes the distance feel even more real. Everyone keeps saying I’m doing the right thing, chasing opportunity, building a future, but part of me wonders what I’m leaving behind in the process. I already miss the everyday warmth of being near people who know me without explanation.",
+      "content": "I've been sitting with this heavy sadness today. The kind that sneaks up in quiet moments. I knew moving across the country for this job would be hard, but I didn't expect the weight of it to feel so personal. There's something about packing up the familiar. The kitchen table where we always gathered, the sound of my dad's voice from the next room. That makes the distance feel even more real. Everyone keeps saying I'm doing the right thing, chasing opportunity, building a future, but part of me wonders what I'm leaving behind in the process. I already miss the everyday warmth of being near people who know me without explanation.",
       "imagePath": "/database/images/9857a571-5135-484d-afdb-ed4da2856c97.png",
       "timestamp": "2025-04-30T01:31:54.855Z"
+    },
+    {
+      "id": "a8z9e2wtmh",
+      "title": "music test",
+      "content": "ma",
+      "imagePath": "/database/images/c5090a54-ce45-44e3-8dcf-c20e35eb5902.jpeg",
+      "spotifyTrack": {
+        "id": "4cOdK2wGLETKBW3PvgPWqT",
+        "name": "Never Gonna Give You Up",
+        "artist": "Rick Astley",
+        "album": "Whenever You Need Somebody",
+        "image": "https://i.scdn.co/image/ab67616d0000b273baf89eb11ec7c657805d2da0",
+        "preview_url": null
+      },
+      "timestamp": "2025-05-03T01:22:17.833Z"
     }
   ]
 }

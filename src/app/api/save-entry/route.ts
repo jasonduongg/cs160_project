@@ -7,6 +7,14 @@ interface Entry {
     title: string;
     content: string;
     imagePath?: string;
+    spotifyTrack?: {
+        id: string;
+        name: string;
+        artist: string;
+        album: string;
+        image: string;
+        preview_url: string;
+    };
     timestamp: string;
 }
 
@@ -20,7 +28,7 @@ function generateId(): string {
 
 export async function POST(request: Request) {
     try {
-        const { title, content, imagePath } = await request.json();
+        const { title, content, imagePath, spotifyTrack } = await request.json();
 
         // Read existing entries
         const filePath = join(process.cwd(), 'public', 'database', 'text.json');
@@ -33,6 +41,7 @@ export async function POST(request: Request) {
             title,
             content,
             imagePath: imagePath || null,
+            spotifyTrack: spotifyTrack || null,
             timestamp: new Date().toISOString()
         });
 

@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { FiMenu, FiX, FiChevronLeft } from 'react-icons/fi';
+import { FiMenu, FiX, FiChevronLeft, FiBook, FiPlus, FiMessageSquare, FiHome } from 'react-icons/fi';
 
 export default function Header({ showBack }: { showBack?: boolean }) {
   const [open, setOpen] = useState(false);
@@ -44,12 +44,25 @@ export default function Header({ showBack }: { showBack?: boolean }) {
         </button>
 
         {open && (
-          <div className="absolute right-0 mt-8 w-48 rounded-xl shadow-lg bg-[#f9f9f6] border p-4 space-y-4 z-50">
-            <Link href="/" className="block text-left text-gray-600 hover:text-blue-500">Home</Link>
-            <Link href="/entries" className="block text-left text-gray-600 hover:text-blue-500">Entries</Link>
-            <Link href="/create" className="block text-left text-gray-600 hover:text-blue-500">New Entry</Link>
-            <Link href="/chat/example" className="block text-left text-gray-600 hover:text-blue-500">Chat</Link>
-            <Link href="#" className="block text-left text-gray-600 hover:text-blue-500">Profile</Link>
+          <div className="absolute right-0 top-[40px] w-40 rounded-xl shadow-lg bg-[#f9f9f6] border p-2 z-50">
+            <div className="py-0.5">
+              <Link href="/" className="flex items-center px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-100">
+                <FiHome className="w-4 h-4 mr-2" />
+                Home
+              </Link>
+              <Link href="/entries" className="flex items-center px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-100">
+                <FiBook className="w-4 h-4 mr-2" />
+                Entries
+              </Link>
+              <Link href="/create" className="flex items-center px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-100">
+                <FiPlus className="w-4 h-4 mr-2" />
+                Create
+              </Link>
+              <Link href="/chat/example" className="flex items-center px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-100">
+                <FiMessageSquare className="w-4 h-4 mr-2" />
+                Chat
+              </Link>
+            </div>
           </div>
         )}
       </div>

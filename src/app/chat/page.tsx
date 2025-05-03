@@ -1,89 +1,43 @@
-'use client';
-
-import { useParams } from 'next/navigation';
-import { useEffect, useState, useRef } from 'react';
-import Header from '@/components/Header';
-import Navbar from '@/components/Navbar';
+import React, { useState, useEffect, useRef } from 'react';
 import { toast } from 'react-hot-toast';
+import Header from '../components/Header';
 
 interface Message {
   sender: 'user' | 'ai';
   text: string;
 }
 
-interface Entry {
-  id: string;
-  title: string;
-  content: string;
-  spotifyTrack?: {
-    id: string;
-    name: string;
-    artist: string;
-    album: string;
-    image: string;
-    preview_url: string;
-    external_url: string;
-  };
-}
-
-function getFirstGreeting(entrySnippet: string, personality: string): string {
+function getFirstGreeting(personality: string): string {
   switch (personality) {
     case 'supportive':
-      return `Thank you for sharing your thoughts: " ${entrySnippet}... " How were you feeling when you wrote this?`;
+      return "Hello! I'm here to support you. How are you feeling today?";
     case 'rational':
-      return `Let's analyze your entry logically: " ${entrySnippet}... " What thoughts led you here?`;
+      return "Let's analyze your thoughts logically. What's on your mind?";
     case 'playful':
-      return `Ooh, juicy! " ${entrySnippet}... " Tell me the wildest thing you were thinking!`;
+      return "Hey there! Ready for some fun conversation? What's up?";
     case 'motivational':
-      return `This is a step forward! " ${entrySnippet}... " What strength were you tapping into?`;
+      return "Great to see you! What goals are you working towards today?";
     case 'freud':
-      return `Ah, most interesting, Herr Patient. " ${entrySnippet}... " Let us explore the deeper meaning behind these thoughts. What childhood memories might this evoke?`;
+      return "Ah, welcome my dear patient. What brings you to my couch today?";
     default:
-      return `Let's talk about your journal entry: " ${entrySnippet}... " What was going through your mind?`;
+      return "Hello! How can I help you today?";
   }
 }
 
-export default function EntryChatPage() {
-  const { id } = useParams();
-  const [entryText, setEntryText] = useState('');
-  const [messages, setMessages] = useState<Message[]>([]);
+export default function ChatPage() {
+  const [messages, setMessages] = useState<Message[]>([{ sender: 'ai', text: getFirstGreeting('supportive') }]);
   const [input, setInput] = useState('');
-  const [loading, setLoading] = useState(true);
   const [personality, setPersonality] = useState('supportive');
-  const [initialGreeting, setInitialGreeting] = useState('');
-  const [showEntry, setShowEntry] = useState(true);
-  const [entry, setEntry] = useState<Entry | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const fetchEntry = async () => {
-      try {
-        const response = await fetch('/database/text.json');
-        const data = await response.json();
-        const foundEntry = data.entries.find((e: Entry) => e.id === id);
-        if (foundEntry) {
-          setEntryText(foundEntry.content);
-          setInitialGreeting(getFirstGreeting(foundEntry.content.slice(0, 100), personality));
-          setEntry(foundEntry);
-        } else {
-          toast.error('Entry not found');
-        }
-      } catch (error) {
-        console.error('Error fetching entry:', error);
-        toast.error('Failed to load entry');
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchEntry();
-  }, [id]);
+    // When personality changes, reset messages with new greeting
+    setMessages([{ sender: 'ai', text: getFirstGreeting(personality) }]);
+  }, [personality]);
 
   useEffect(() => {
-    if (entryText) {
-      setInitialGreeting(getFirstGreeting(entryText.slice(0, 100), personality));
-    }
-  }, [personality, entryText]);
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -103,7 +57,6 @@ export default function EntryChatPage() {
             Authorization: 'Bearer rg_v1_r75gpxfxiqdpyzybrumcgfbs002haa8xkzrz_ngk',
           },
           body: JSON.stringify({ 
-            entryText: entryText,
             userInput: input,
             personality: personality,
           }),
@@ -121,10 +74,6 @@ export default function EntryChatPage() {
       setMessages(prev => [...prev, errorMessage]);
     }
   };
-
-  if (loading) {
-    return <div className="p-4 text-center">Loading journal entry...</div>;
-  }
 
   return (
     <main className="relative h-screen w-full overflow-x-hidden bg-[#f9f9f6] text-gray-800 flex flex-col p-4">
@@ -153,51 +102,10 @@ export default function EntryChatPage() {
 
             {/* Chat area */}
             <div className="space-y-4 mb-4">
-              {entryText && (
-                <div className="p-4 rounded-md bg-yellow-50 border border-yellow-200 text-gray-700 italic text-sm">
-                  <div className="flex items-center justify-between mb-2">
-                    <h2 className="font-bold text-gray-800">{entry?.title}</h2>
-                  </div>
-                  {entry?.spotifyTrack && (
-                    <div className="mb-4">
-                      <iframe
-                        src={`https://open.spotify.com/embed/track/${entry.spotifyTrack.id}?utm_source=generator`}
-                        width="100%"
-                        height="80"
-                        frameBorder="0"
-                        allowFullScreen
-                        allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-                        loading="lazy"
-                        className="rounded-lg"
-                      />
-                    </div>
-                  )}
-                  <p className="whitespace-pre-wrap">{entryText}</p>
-                </div>
-              )}
-
-              {initialGreeting && (
-                <div className="flex items-start justify-between">
-                  <div className="w-8 h-8 rounded-full overflow-hidden border-2 border-blue-200 shadow-sm bg-white flex-shrink-0 mt-5">
-                    <img
-                      src="/freud-avatar.png"
-                      alt="AI Avatar"
-                      className="object-cover w-full h-full translate-y-1"
-                    />
-                  </div>
-                  <div className="flex flex-col ml-2">
-                    <p className="text-xs text-gray-500 mb-1">Freud Droid</p>
-                    <div className="p-3 rounded-lg text-sm max-w-xs bg-gray-200">
-                      {initialGreeting}
-                    </div>
-                  </div>
-                </div>
-              )}
-
               {messages.map((msg, i) => (
                 <div
                   key={i}
-                  className="flex items-start justify-between"
+                  className={`flex items-start justify-between ${msg.sender === 'user' ? 'flex-row-reverse' : ''}`}
                 >
                   {msg.sender === 'ai' ? (
                     <>
@@ -217,12 +125,6 @@ export default function EntryChatPage() {
                     </>
                   ) : (
                     <>
-                      <div className="flex flex-col items-end mr-2">
-                        <p className="text-xs text-gray-500 mb-1">James</p>
-                        <div className="p-3 rounded-lg text-sm max-w-xs bg-blue-100">
-                          {msg.text}
-                        </div>
-                      </div>
                       <div className="w-8 h-8 rounded-full overflow-hidden border-2 border-blue-200 shadow-sm bg-white flex-shrink-0 mt-5">
                         <img
                           src="/user-avatar.jpg"
@@ -230,16 +132,23 @@ export default function EntryChatPage() {
                           className="object-cover w-full h-full"
                         />
                       </div>
+                      <div className="flex flex-col items-end mr-2 text-right">
+                        <p className="text-xs text-gray-500 mb-1">James</p>
+                        <div className="p-3 rounded-lg text-sm max-w-xs bg-blue-100">
+                          {msg.text}
+                        </div>
+                      </div>
                     </>
                   )}
                 </div>
               ))}
+              <div ref={messagesEndRef} />
             </div>
           </div>
         </div>
       </div>
 
-      {/* Personality selector and input field */}
+      {/* Input field */}
       <div className="pt-2">
         <div className="flex gap-2">
           <input
@@ -264,4 +173,4 @@ export default function EntryChatPage() {
       </div>
     </main>
   );
-}
+} 
