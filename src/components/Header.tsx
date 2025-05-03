@@ -62,6 +62,10 @@ export default function Header({ showBack }: { showBack?: boolean }) {
                 <FiMessageSquare className="w-4 h-4 mr-2" />
                 Chat
               </Link>
+              <Link href="/calendar" className="flex items-center px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-100">
+                <FiMessageSquare className="w-4 h-4 mr-2" />
+                Calendar
+              </Link>
             </div>
           </div>
         )}
