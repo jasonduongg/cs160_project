@@ -6,6 +6,9 @@ interface Entry {
     id: string;
     title: string;
     content: string;
+    vibes: string[];
+    colorHex: string;
+
     imagePath?: string;
     spotifyTrack?: {
         id: string;
@@ -35,11 +38,18 @@ export async function POST(request: Request) {
         const fileContent = await readFile(filePath, 'utf-8');
         const entries = JSON.parse(fileContent);
 
+        //TODO: connect reagent to give vibes and color hex
+        const vibes = [""];
+        const randomHex = Math.floor(Math.random() * 0xffffff).toString(16);
+        const colorHex = `#${randomHex.padStart(6, '0')}`;
+
         // Add new entry
         entries.entries.push({
             id: generateId(),
             title,
             content,
+            vibes,
+            colorHex,
             imagePath: imagePath || null,
             spotifyTrack: spotifyTrack || null,
             timestamp: new Date().toISOString()
