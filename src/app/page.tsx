@@ -30,7 +30,7 @@ export default function LandingPage() {
 
       <section className="w-full text-center mt-16">
         <h1 className="text-2xl font-semibold">Hi, James.</h1>
-        <p className="text-lg mt-2">How are you arriving today?</p>
+        <p className="text-lg mt-2">How are you feeling today?</p>
         <div className="grid grid-cols-5 gap-4 w-full max-w-md mx-auto mt-8">
           {moods.map((m) => (
             <button
@@ -61,7 +61,7 @@ export default function LandingPage() {
             className="object-cover w-full h-full translate-y-2"
           />
         </div>
-        <blockquote className="italic text-xs text-gray-600 text-center max-w-sm">
+        <blockquote className="italic text-sm text-gray-600 text-center max-w-sm">
           You don't have to make sense. You just have to begin.
         </blockquote>
       </section>
