@@ -2,13 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import Header from '@/components/Header';
-
-const weekDays = ["Su", "M", "Tu", "W", "Th", "F", "Sa"];
-
-//TODO: make this procedural?
-const LEADING_BLANKS = 4;
-
-const MAX_ENTRIES = 28;
+import { Play, Pause } from 'lucide-react';
 
 interface Entry {
   id: string;
@@ -16,96 +10,205 @@ interface Entry {
   content: string;
   vibes: string[];
   colorHex: string;
-
   imagePath?: string;
   spotifyTrack?: {
-      id: string;
-      name: string;
-      artist: string;
-      album: string;
-      image: string;
-      preview_url: string;
+    id: string;
+    name: string;
+    artist: string;
+    image: string;
+    preview_url: string;
   };
   timestamp: string;
 }
 
-const createEmptyEntry = (): Entry => ({
-  id: '',
-  title: '',
-  content: '',
-  vibes: [],
-  colorHex: '',
-  timestamp: '',
-});
-
 export default function Calendar() {
   const [entries, setEntries] = useState<Entry[]>([]);
-  const [paddedEntries, setPaddedEntries] = useState<Entry[]>([]);
+  const [selectedEntry, setSelectedEntry] = useState<Entry | null>(null);
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [audio, setAudio] = useState<HTMLAudioElement | null>(null);
 
   useEffect(() => {
     fetch('/database/text.json')
       .then((res) => res.json())
       .then((data) => setEntries(data.entries || []))
       .catch((err) => console.error('Error loading entries:', err));
-    
   }, []);
 
-
-  // Only needed for calendar type, change to slice up to max days for non-calendar
   useEffect(() => {
-    if (entries.length > 0) {
-      // Only needed if doing calendar style
-      const uniqueEntriesByDay = Array.from(
-        new Map(
-          entries.map((entry) => [
-            new Date(entry.timestamp).getDate(), // key: 'YYYY-MM-DD'
-            entry,
-          ])
-        ).values()
-      );
-
-      const first_day = new Date(uniqueEntriesByDay[0].timestamp).getDate();
-
-      //const leadingBlanks = Array(LEADING_BLANKS + first_day).fill(createEmptyEntry());
-
-      //31 for max days
-      var paddedEntries: Entry[] = Array(31).fill(createEmptyEntry());
-
-      uniqueEntriesByDay.forEach((entry) => {
-        paddedEntries[LEADING_BLANKS + new Date(entry.timestamp).getDate()] = entry;
-      });
-
-      setPaddedEntries(paddedEntries);
+    if (selectedEntry?.spotifyTrack?.preview_url) {
+      const newAudio = new Audio(selectedEntry.spotifyTrack.preview_url);
+      newAudio.addEventListener('ended', () => setIsPlaying(false));
+      setAudio(newAudio);
     }
-  }, [entries]);
+    return () => {
+      if (audio) {
+        audio.pause();
+        audio.removeEventListener('ended', () => setIsPlaying(false));
+      }
+    };
+  }, [selectedEntry?.spotifyTrack?.preview_url]);
 
+  const togglePlay = () => {
+    if (audio) {
+      if (isPlaying) {
+        audio.pause();
+      } else {
+        audio.play();
+      }
+      setIsPlaying(!isPlaying);
+    }
+  };
+
+  // Calculate mood summary
+  const getMoodSummary = () => {
+    if (entries.length === 0) return "No entries yet.";
+    
+    const moodCounts: Record<string, number> = {};
+    entries.forEach(entry => {
+      entry.vibes.forEach(vibe => {
+        moodCounts[vibe] = (moodCounts[vibe] || 0) + 1;
+      });
+    });
+
+    const sortedMoods = Object.entries(moodCounts)
+      .sort(([, a], [, b]) => b - a)
+      .slice(0, 3);
+
+    const moodPhrases = sortedMoods.map(([mood, count]) => {
+      const percentage = Math.round((count / entries.length) * 100);
+      return `${mood} (${percentage}%)`;
+    });
+
+    return `You have been feeling ${moodPhrases.join(', ')} lately.`;
+  };
+
+  // Calculate average color from recent entries
+  const getAverageColor = () => {
+    if (entries.length === 0) return '#FFFFFF';
+    
+    const recentEntries = entries
+      .sort((a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime())
+      .slice(0, 3);
+
+    // Convert hex colors to RGB
+    const colors = recentEntries.map(entry => {
+      const hex = entry.colorHex.replace('#', '');
+      return {
+        r: parseInt(hex.substring(0, 2), 16),
+        g: parseInt(hex.substring(2, 4), 16),
+        b: parseInt(hex.substring(4, 6), 16)
+      };
+    });
+
+    // Calculate average RGB values
+    const avg = colors.reduce((acc, color) => ({
+      r: acc.r + color.r,
+      g: acc.g + color.g,
+      b: acc.b + color.b
+    }), { r: 0, g: 0, b: 0 });
+
+    const count = colors.length;
+    const avgColor = {
+      r: Math.round(avg.r / count),
+      g: Math.round(avg.g / count),
+      b: Math.round(avg.b / count)
+    };
+
+    // Convert back to hex
+    return `#${avgColor.r.toString(16).padStart(2, '0')}${avgColor.g.toString(16).padStart(2, '0')}${avgColor.b.toString(16).padStart(2, '0')}`;
+  };
+
+  // Sort entries by timestamp
+  const sortedEntries = [...entries].sort((a, b) => 
+    new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime()
+  );
 
   return (
-    <main className="relative h-screen w-full overflow-x-hidden bg-[#f9f9f6] text-gray-800 flex flex-col p-4">  
+    <main className="relative h-screen w-full overflow-x-hidden bg-[#f9f9f6] text-gray-800 flex flex-col p-4">
       <Header showBack={true} />
-      <div className="p-6 text-center">
-        <h2 className="text-xl font-medium text-left mb-4">
-          Hi Sophia! Overall, you’ve been feeling joyous and peaceful lately...
-        </h2>
-        <h1 className="text-3xl font-bold text-left mb-4">Recent entries at a Glance</h1>
 
-        {/* <div className="grid grid-cols-7 text-gray-500 font-medium mb-2">
-          {weekDays.map((day) => (
-            <div key={day} className="text-center">
-              {day}
+      <div className="flex-1 overflow-y-auto">
+        <div className="max-w-[384px] mx-auto">
+          <div 
+            className="text-center mb-6 p-4 rounded-lg shadow-sm"
+            style={{ 
+              backgroundColor: `${getAverageColor()}20`,
+              border: `1px solid ${getAverageColor()}40`
+            }}
+          >
+            <p className="text-gray-700">{getMoodSummary()}</p>
+          </div>
+          
+          <h1 className="text-2xl font-bold mb-4">Mood Tracker</h1>
+          
+          {/* Mood Grid */}
+          <div className="grid grid-cols-4 gap-3 mb-6">
+            {sortedEntries.map((entry, index) => (
+              <div
+                key={entry.id}
+                className="aspect-square rounded-lg cursor-pointer transition-all duration-200 hover:scale-105 shadow-md"
+                style={{ backgroundColor: entry.colorHex }}
+                onClick={() => setSelectedEntry(entry)}
+              />
+            ))}
+          </div>
+
+          {/* Selected Entry Details */}
+          {selectedEntry && (
+            <div 
+              className="rounded-xl p-4 shadow-md"
+              style={{ 
+                backgroundColor: `${selectedEntry.colorHex}20`,
+                border: `1px solid ${selectedEntry.colorHex}40`
+              }}
+            >
+              <h2 className="text-xl font-semibold mb-2">{selectedEntry.title}</h2>
+              <p className="text-gray-600 mb-4">{selectedEntry.content}</p>
+              
+              {/* Vibes */}
+              <div className="flex flex-wrap gap-2 mb-4">
+                {selectedEntry.vibes.map((vibe, index) => (
+                  <span
+                    key={index}
+                    className="px-3 py-1 rounded-full text-sm"
+                    style={{ 
+                      backgroundColor: `${selectedEntry.colorHex}40`,
+                      color: selectedEntry.colorHex
+                    }}
+                  >
+                    {vibe}
+                  </span>
+                ))}
+              </div>
+
+              {/* Spotify Track */}
+              {selectedEntry.spotifyTrack && (
+                <div 
+                  className="flex items-center gap-4 p-3 rounded-lg"
+                  style={{ backgroundColor: `${selectedEntry.colorHex}20` }}
+                >
+                  <img
+                    src={selectedEntry.spotifyTrack.image}
+                    alt={selectedEntry.spotifyTrack.name}
+                    className="w-12 h-12 rounded"
+                  />
+                  <div className="flex-1">
+                    <p className="font-medium">{selectedEntry.spotifyTrack.name}</p>
+                    <p className="text-sm text-gray-600">{selectedEntry.spotifyTrack.artist}</p>
+                  </div>
+                  {selectedEntry.spotifyTrack.preview_url && (
+                    <button
+                      onClick={togglePlay}
+                      className="p-2 rounded-full text-white transition-colors"
+                      style={{ backgroundColor: selectedEntry.colorHex }}
+                    >
+                      {isPlaying ? <Pause size={16} /> : <Play size={16} />}
+                    </button>
+                  )}
+                </div>
+              )}
             </div>
-          ))}
-        </div> */}
-
-        {/* Calendar Grid */}
-        <div className="grid grid-cols-7 gap-2">
-          {entries.slice(0, MAX_ENTRIES).flat().map((entry, index) => (
-            <div
-              key={index}
-              className="w-10 h-10 rounded-md"
-              style={{ backgroundColor: entry.colorHex || "transparent"}}
-            />
-          ))}
+          )}
         </div>
       </div>
     </main>

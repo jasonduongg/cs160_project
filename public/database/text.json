@@ -1,415 +1,124 @@
 {
   "entries": [
     {
-      "id": "y9nx64ca53s",
-	  "colorHex": "#89a2e9",
-      "title": "Test2",
-      "content": "DUAHSDOAOIDASDASD",
-      "timestamp": "2025-04-27T23:41:58.772Z"
+      "id": "entry1",
+      "title": "Morning Coffee",
+      "content": "Started the day with a peaceful moment watching the sunrise. The world feels full of possibilities today.",
+      "vibes": [
+        "peaceful",
+        "hopeful"
+      ],
+      "colorHex": "#FFD700",
+      "imagePath": "/database/images/coffee.png",
+      "spotifyTrack": {
+        "id": "5YJm6px4KWxWlQFTzXwK7U",
+        "name": "Here Comes the Sun",
+        "artist": "The Beatles",
+        "album": "Abbey Road",
+        "image": "https://i.scdn.co/image/ab67616d0000b273dc30583ba717007b00cceb25",
+        "preview_url": "https://p.scdn.co/mp3-preview/5c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0"
+      },
+      "timestamp": "2024-05-01T08:30:00.000Z"
     },
     {
-      "id": "l6k3luir5p",
-	  "colorHex": "#89a2e9",
-      "title": "dasda",
-      "content": "sdasdadasd",
-      "imagePath": "/database/images/9bd89aff-ae87-4756-8985-8e3ce15c9970.png",
-      "timestamp": "2025-04-29T01:35:04.047Z"
+      "id": "entry2",
+      "title": "Afternoon Slump",
+      "content": "Feeling a bit overwhelmed with work. Need to take a breather and regroup.",
+      "vibes": [
+        "stressed",
+        "tired"
+      ],
+      "colorHex": "#FF6B6B",
+      "imagePath": "/database/images/afternoon-slump.png",
+      "spotifyTrack": {
+        "id": "6Qb6I4F7jZ8VK4kG44Zg7z",
+        "name": "Breathe",
+        "artist": "Pink Floyd",
+        "album": "The Dark Side of the Moon",
+        "image": "https://i.scdn.co/image/ab67616d0000b2730b51f8d91f3a21e8426361ae",
+        "preview_url": "https://p.scdn.co/mp3-preview/5c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0"
+      },
+      "timestamp": "2024-05-01T14:45:00.000Z"
     },
     {
-      "id": "sr1i1u26oa8",
-	  "colorHex": "#89a2e9",
-      "title": "test1",
-      "content": "tesoth",
+      "id": "entry3",
+      "title": "Evening Walk",
+      "content": "Took a long walk in the park. The fresh air and movement helped clear my mind.",
+      "vibes": [
+        "refreshed",
+        "energized"
+      ],
+      "colorHex": "#4CAF50",
+      "imagePath": "/database/images/evening-walk.png",
+      "spotifyTrack": {
+        "id": "7GhIk7Il098yCjg4BQjzvb",
+        "name": "Walking on Sunshine",
+        "artist": "Katrina & The Waves",
+        "album": "Walking on Sunshine",
+        "image": "https://i.scdn.co/image/ab67616d0000b2730b51f8d91f3a21e8426361ae",
+        "preview_url": "https://p.scdn.co/mp3-preview/5c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0"
+      },
+      "timestamp": "2024-05-01T18:20:00.000Z"
+    },
+    {
+      "id": "entry4",
+      "title": "Creative Flow",
+      "content": "Finally found my creative groove today. The ideas are flowing naturally.",
+      "vibes": [
+        "inspired",
+        "focused"
+      ],
+      "colorHex": "#9C27B0",
+      "imagePath": "/database/images/creative-flow.png",
+      "spotifyTrack": {
+        "id": "6Qb6I4F7jZ8VK4kG44Zg7z",
+        "name": "Don't Stop Me Now",
+        "artist": "Queen",
+        "album": "Jazz",
+        "image": "https://i.scdn.co/image/ab67616d0000b2730b51f8d91f3a21e8426361ae",
+        "preview_url": "https://p.scdn.co/mp3-preview/5c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0"
+      },
+      "timestamp": "2024-05-02T10:15:00.000Z"
+    },
+    {
+      "id": "entry5",
+      "title": "Rainy Day",
+      "content": "The sound of rain against the window is so soothing. Perfect day for reflection.",
+      "vibes": [
+        "calm",
+        "contemplative"
+      ],
+      "colorHex": "#2196F3",
       "imagePath": null,
-      "timestamp": "2025-04-29T22:16:19.371Z"
+      "spotifyTrack": {
+        "id": "6Qb6I4F7jZ8VK4kG44Zg7z",
+        "name": "Rain",
+        "artist": "The Beatles",
+        "album": "Past Masters",
+        "image": "https://i.scdn.co/image/ab67616d0000b2730b51f8d91f3a21e8426361ae",
+        "preview_url": "https://p.scdn.co/mp3-preview/5c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0c0"
+      },
+      "timestamp": "2024-05-02T15:30:00.000Z"
     },
     {
-      "id": "bgi8hugznu",
-	  "colorHex": "#89a2e9",
-      "title": "yesyes",
-      "content": "This afternoon at the café, I somehow managed to knock over an entire tray of drinks. Mine and two other customers' drinks. Just by trying to squeeze past a chair. The crash was so loud that everyone turned to stare, and in my panic, I made it worse by trying to apologize while frantically picking up ice cubes off the floor.",
-      "imagePath": null,
-      "timestamp": "2025-04-29T22:26:39.827Z"
-    },
-    {
-      "id": "uno5v1w4kpp",
-	  "colorHex": "#89a2e9",
-      "title": "test3",
-      "content": "iosdjfgodhsfgi",
-      "imagePath": null,
-      "timestamp": "2025-04-30T00:38:31.719Z"
-    },
-    {
-      "id": "ucc9dlm9hzs",
-	  "colorHex": "#89a2e9",
-      "title": "The Distance",
-      "content": "I've been sitting with this heavy sadness today. The kind that sneaks up in quiet moments. I knew moving across the country for this job would be hard, but I didn't expect the weight of it to feel so personal. There's something about packing up the familiar. The kitchen table where we always gathered, the sound of my dad's voice from the next room. That makes the distance feel even more real. Everyone keeps saying I'm doing the right thing, chasing opportunity, building a future, but part of me wonders what I'm leaving behind in the process. I already miss the everyday warmth of being near people who know me without explanation.",
-      "imagePath": "/database/images/9857a571-5135-484d-afdb-ed4da2856c97.png",
-      "timestamp": "2025-04-30T01:31:54.855Z"
-    },
-    {
-      "id": "a8z9e2wtmh",
-	  "colorHex": "#89a2e9",
-      "title": "music test",
-      "content": "ma",
-      "imagePath": "/database/images/c5090a54-ce45-44e3-8dcf-c20e35eb5902.jpeg",
+      "id": "ubs96zkuq5",
+      "title": "Excited for summer!!!",
+      "content": "I can't wait to be in New York City this summer.",
+      "vibes": [
+        ""
+      ],
+      "colorHex": "#eb3dc1",
+      "imagePath": "/database/images/1df464b3-c33c-44b8-a511-1aa9f65330c8.webp",
       "spotifyTrack": {
         "id": "4cOdK2wGLETKBW3PvgPWqT",
         "name": "Never Gonna Give You Up",
         "artist": "Rick Astley",
         "album": "Whenever You Need Somebody",
         "image": "https://i.scdn.co/image/ab67616d0000b273baf89eb11ec7c657805d2da0",
-        "preview_url": null
+        "preview_url": null,
+        "external_url": "https://open.spotify.com/track/4cOdK2wGLETKBW3PvgPWqT"
       },
-      "timestamp": "2025-05-03T01:22:17.833Z"
-    },
-    {
-      "id": "fg29p1shnpt",
-      "title": "Color test 1",
-      "content": "1",
-      "vibes": [
-        ""
-      ],
-      "colorHex": "#4c671c",
-      "imagePath": null,
-      "spotifyTrack": null,
-      "timestamp": "2025-05-03T10:11:40.314Z"
-    },
-    {
-      "id": "vset4dmbbb",
-      "title": "Color test 2",
-      "content": "2",
-      "vibes": [
-        ""
-      ],
-      "colorHex": "#89a2e9",
-      "imagePath": null,
-      "spotifyTrack": null,
-      "timestamp": "2025-05-03T10:12:11.005Z"
-    },
-	{
-      "id": "vset4dmbbb",
-      "title": "Copy Pasted Json to test Color overflow",
-      "content": "2",
-      "vibes": [
-        ""
-      ],
-      "colorHex": "#89a2e9",
-      "imagePath": null,
-      "spotifyTrack": null,
-      "timestamp": "2025-05-03T10:12:11.005Z"
-    },
-	{
-      "id": "vset4dmbbb",
-      "title": "Copy Pasted Json to test Color overflow",
-      "content": "2",
-      "vibes": [
-        ""
-      ],
-      "colorHex": "#89a2e9",
-      "imagePath": null,
-      "spotifyTrack": null,
-      "timestamp": "2025-05-03T10:12:11.005Z"
-    },
-	{
-      "id": "vset4dmbbb",
-      "title": "Copy Pasted Json to test Color overflow",
-      "content": "2",
-      "vibes": [
-        ""
-      ],
-      "colorHex": "#89a2e9",
-      "imagePath": null,
-      "spotifyTrack": null,
-      "timestamp": "2025-05-03T10:12:11.005Z"
-    },
-	{
-      "id": "vset4dmbbb",
-      "title": "Copy Pasted Json to test Color overflow",
-      "content": "2",
-      "vibes": [
-        ""
-      ],
-      "colorHex": "#89a2e9",
-      "imagePath": null,
-      "spotifyTrack": null,
-      "timestamp": "2025-05-03T10:12:11.005Z"
-    },
-	{
-      "id": "vset4dmbbb",
-      "title": "Copy Pasted Json to test Color overflow",
-      "content": "2",
-      "vibes": [
-        ""
-      ],
-      "colorHex": "#89a2e9",
-      "imagePath": null,
-      "spotifyTrack": null,
-      "timestamp": "2025-05-03T10:12:11.005Z"
-    },
-	{
-      "id": "vset4dmbbb",
-      "title": "Copy Pasted Json to test Color overflow",
-      "content": "2",
-      "vibes": [
-        ""
-      ],
-      "colorHex": "#89a2e9",
-      "imagePath": null,
-      "spotifyTrack": null,
-      "timestamp": "2025-05-03T10:12:11.005Z"
-    },
-	{
-      "id": "vset4dmbbb",
-      "title": "Copy Pasted Json to test Color overflow",
-      "content": "2",
-      "vibes": [
-        ""
-      ],
-      "colorHex": "#89a2e9",
-      "imagePath": null,
-      "spotifyTrack": null,
-      "timestamp": "2025-05-03T10:12:11.005Z"
-    },
-	{
-      "id": "vset4dmbbb",
-      "title": "Copy Pasted Json to test Color overflow",
-      "content": "2",
-      "vibes": [
-        ""
-      ],
-      "colorHex": "#89a2e9",
-      "imagePath": null,
-      "spotifyTrack": null,
-      "timestamp": "2025-05-03T10:12:11.005Z"
-    },
-	{
-      "id": "vset4dmbbb",
-      "title": "Copy Pasted Json to test Color overflow",
-      "content": "2",
-      "vibes": [
-        ""
-      ],
-      "colorHex": "#89a2e9",
-      "imagePath": null,
-      "spotifyTrack": null,
-      "timestamp": "2025-05-03T10:12:11.005Z"
-    },
-	{
-      "id": "vset4dmbbb",
-      "title": "Copy Pasted Json to test Color overflow",
-      "content": "2",
-      "vibes": [
-        ""
-      ],
-      "colorHex": "#89a2e9",
-      "imagePath": null,
-      "spotifyTrack": null,
-      "timestamp": "2025-05-03T10:12:11.005Z"
-    },
-	{
-      "id": "vset4dmbbb",
-      "title": "Copy Pasted Json to test Color overflow",
-      "content": "2",
-      "vibes": [
-        ""
-      ],
-      "colorHex": "#89a2e9",
-      "imagePath": null,
-      "spotifyTrack": null,
-      "timestamp": "2025-05-03T10:12:11.005Z"
-    },
-	{
-      "id": "vset4dmbbb",
-      "title": "Copy Pasted Json to test Color overflow",
-      "content": "2",
-      "vibes": [
-        ""
-      ],
-      "colorHex": "#89a2e9",
-      "imagePath": null,
-      "spotifyTrack": null,
-      "timestamp": "2025-05-03T10:12:11.005Z"
-    },
-	{
-      "id": "vset4dmbbb",
-      "title": "Copy Pasted Json to test Color overflow",
-      "content": "2",
-      "vibes": [
-        ""
-      ],
-      "colorHex": "#89a2e9",
-      "imagePath": null,
-      "spotifyTrack": null,
-      "timestamp": "2025-05-03T10:12:11.005Z"
-    },
-	{
-      "id": "vset4dmbbb",
-      "title": "Copy Pasted Json to test Color overflow",
-      "content": "2",
-      "vibes": [
-        ""
-      ],
-      "colorHex": "#89a2e9",
-      "imagePath": null,
-      "spotifyTrack": null,
-      "timestamp": "2025-05-03T10:12:11.005Z"
-    },
-	{
-      "id": "vset4dmbbb",
-      "title": "Copy Pasted Json to test Color overflow",
-      "content": "2",
-      "vibes": [
-        ""
-      ],
-      "colorHex": "#89a2e9",
-      "imagePath": null,
-      "spotifyTrack": null,
-      "timestamp": "2025-05-03T10:12:11.005Z"
-    },
-	{
-      "id": "vset4dmbbb",
-      "title": "Copy Pasted Json to test Color overflow",
-      "content": "2",
-      "vibes": [
-        ""
-      ],
-      "colorHex": "#89a2e9",
-      "imagePath": null,
-      "spotifyTrack": null,
-      "timestamp": "2025-05-03T10:12:11.005Z"
-    },
-	{
-      "id": "vset4dmbbb",
-      "title": "Copy Pasted Json to test Color overflow",
-      "content": "2",
-      "vibes": [
-        ""
-      ],
-      "colorHex": "#89a2e9",
-      "imagePath": null,
-      "spotifyTrack": null,
-      "timestamp": "2025-05-03T10:12:11.005Z"
-    },
-	{
-      "id": "vset4dmbbb",
-      "title": "Copy Pasted Json to test Color overflow",
-      "content": "2",
-      "vibes": [
-        ""
-      ],
-      "colorHex": "#89a2e9",
-      "imagePath": null,
-      "spotifyTrack": null,
-      "timestamp": "2025-05-03T10:12:11.005Z"
-    },
-	{
-      "id": "vset4dmbbb",
-      "title": "Copy Pasted Json to test Color overflow",
-      "content": "2",
-      "vibes": [
-        ""
-      ],
-      "colorHex": "#89a2e9",
-      "imagePath": null,
-      "spotifyTrack": null,
-      "timestamp": "2025-05-03T10:12:11.005Z"
-    },
-	{
-      "id": "vset4dmbbb",
-      "title": "Copy Pasted Json to test Color overflow",
-      "content": "2",
-      "vibes": [
-        ""
-      ],
-      "colorHex": "#89a2e9",
-      "imagePath": null,
-      "spotifyTrack": null,
-      "timestamp": "2025-05-03T10:12:11.005Z"
-    },
-	{
-      "id": "vset4dmbbb",
-      "title": "Copy Pasted Json to test Color overflow",
-      "content": "2",
-      "vibes": [
-        ""
-      ],
-      "colorHex": "#89a2e9",
-      "imagePath": null,
-      "spotifyTrack": null,
-      "timestamp": "2025-05-03T10:12:11.005Z"
-    },
-	{
-      "id": "vset4dmbbb",
-      "title": "Copy Pasted Json to test Color overflow",
-      "content": "2",
-      "vibes": [
-        ""
-      ],
-      "colorHex": "#89a2e9",
-      "imagePath": null,
-      "spotifyTrack": null,
-      "timestamp": "2025-05-03T10:12:11.005Z"
-    },
-	{
-      "id": "vset4dmbbb",
-      "title": "Copy Pasted Json to test Color overflow",
-      "content": "2",
-      "vibes": [
-        ""
-      ],
-      "colorHex": "#89a2e9",
-      "imagePath": null,
-      "spotifyTrack": null,
-      "timestamp": "2025-05-03T10:12:11.005Z"
-    },
-	{
-      "id": "vset4dmbbb",
-      "title": "Copy Pasted Json to test Color overflow",
-      "content": "2",
-      "vibes": [
-        ""
-      ],
-      "colorHex": "#89a2e9",
-      "imagePath": null,
-      "spotifyTrack": null,
-      "timestamp": "2025-05-03T10:12:11.005Z"
-    },
-	{
-      "id": "vset4dmbbb",
-      "title": "Copy Pasted Json to test Color overflow",
-      "content": "2",
-      "vibes": [
-        ""
-      ],
-      "colorHex": "#89a2e9",
-      "imagePath": null,
-      "spotifyTrack": null,
-      "timestamp": "2025-05-03T10:12:11.005Z"
-    },
-	{
-      "id": "vset4dmbbb",
-      "title": "Copy Pasted Json to test Color overflow",
-      "content": "2",
-      "vibes": [
-        ""
-      ],
-      "colorHex": "#89a2e9",
-      "imagePath": null,
-      "spotifyTrack": null,
-      "timestamp": "2025-05-03T10:12:11.005Z"
-    },
-	{
-      "id": "vset4dmbbb",
-      "title": "Copy Pasted Json to test Color overflow",
-      "content": "2",
-      "vibes": [
-        ""
-      ],
-      "colorHex": "#89a2e9",
-      "imagePath": null,
-      "spotifyTrack": null,
-      "timestamp": "2025-05-03T10:12:11.005Z"
+      "timestamp": "2025-05-05T18:12:51.255Z"
     }
   ]
 }

@@ -3,7 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { FiMenu, FiX, FiChevronLeft, FiBook, FiPlus, FiMessageSquare, FiHome } from 'react-icons/fi';
+import { FiMenu, FiX, FiChevronLeft, FiBook, FiPlus, FiMessageSquare, FiHome, FiCalendar } from 'react-icons/fi';
 
 export default function Header({ showBack }: { showBack?: boolean }) {
   const [open, setOpen] = useState(false);
@@ -50,20 +50,20 @@ export default function Header({ showBack }: { showBack?: boolean }) {
                 <FiHome className="w-4 h-4 mr-2" />
                 Home
               </Link>
-              <Link href="/entries" className="flex items-center px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-100">
-                <FiBook className="w-4 h-4 mr-2" />
-                Entries
-              </Link>
               <Link href="/create" className="flex items-center px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-100">
                 <FiPlus className="w-4 h-4 mr-2" />
                 Create
+              </Link>
+              <Link href="/entries" className="flex items-center px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-100">
+                <FiBook className="w-4 h-4 mr-2" />
+                Entries
               </Link>
               <Link href="/chat/example" className="flex items-center px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-100">
                 <FiMessageSquare className="w-4 h-4 mr-2" />
                 Chat
               </Link>
               <Link href="/calendar" className="flex items-center px-3 py-1.5 text-sm text-gray-700 hover:bg-gray-100">
-                <FiMessageSquare className="w-4 h-4 mr-2" />
+                <FiCalendar className="w-4 h-4 mr-2" />
                 Calendar
               </Link>
             </div>
