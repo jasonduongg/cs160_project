@@ -8,6 +8,8 @@ const weekDays = ["Su", "M", "Tu", "W", "Th", "F", "Sa"];
 //TODO: make this procedural?
 const LEADING_BLANKS = 4;
 
+const MAX_ENTRIES = 28;
+
 interface Entry {
   id: string;
   title: string;
@@ -85,19 +87,19 @@ export default function Calendar() {
         <h2 className="text-xl font-medium text-left mb-4">
           Hi Sophia! Overall, you’ve been feeling joyous and peaceful lately...
         </h2>
-        <h1 className="text-3xl font-bold text-left mb-4">April at a Glance</h1>
+        <h1 className="text-3xl font-bold text-left mb-4">Recent entries at a Glance</h1>
 
-        <div className="grid grid-cols-7 text-gray-500 font-medium mb-2">
+        {/* <div className="grid grid-cols-7 text-gray-500 font-medium mb-2">
           {weekDays.map((day) => (
             <div key={day} className="text-center">
               {day}
             </div>
           ))}
-        </div>
+        </div> */}
 
         {/* Calendar Grid */}
         <div className="grid grid-cols-7 gap-2">
-          {paddedEntries.flat().map((entry, index) => (
+          {entries.slice(0, MAX_ENTRIES).flat().map((entry, index) => (
             <div
               key={index}
               className="w-10 h-10 rounded-md"
