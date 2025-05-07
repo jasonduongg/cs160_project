@@ -105,7 +105,9 @@
       "title": "Excited for summer!!!",
       "content": "I can't wait to be in New York City this summer.",
       "vibes": [
-        ""
+        "vibes",
+        "excited",
+        "happy"
       ],
       "colorHex": "#eb3dc1",
       "imagePath": "/database/images/1df464b3-c33c-44b8-a511-1aa9f65330c8.webp",
