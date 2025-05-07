@@ -98,7 +98,7 @@ export default function CreatePage() {
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
-        
+
         if (!title.trim()) {
             toast.error('Please enter a title');
             return;
@@ -129,11 +129,11 @@ export default function CreatePage() {
                 headers: {
                     'Content-Type': 'application/json',
                 },
-                body: JSON.stringify({ 
-                    title, 
-                    content, 
+                body: JSON.stringify({
+                    title,
+                    content,
                     imagePath,
-                    spotifyTrack: trackData 
+                    spotifyTrack: trackData
                 }),
             });
 
@@ -164,7 +164,7 @@ export default function CreatePage() {
                 </div>
             )}
 
-            <div className="flex-1 overflow-y-auto">
+            <div className="flex-1 overflow-y-auto px-2">
                 <form onSubmit={handleSubmit} className="flex flex-col mt-2 space-y-4 max-w-[384px] mx-auto">
                     <div>
                         <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-1">
@@ -175,8 +175,8 @@ export default function CreatePage() {
                             id="title"
                             value={title}
                             onChange={(e) => setTitle(e.target.value)}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black placeholder:text-black bg-white"
-                            placeholder="Enter your title"
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-black placeholder:text-black bg-white"
+                            placeholder="Enter your title 2"
                             required
                         />
                     </div>
@@ -189,7 +189,7 @@ export default function CreatePage() {
                             id="content"
                             value={content}
                             onChange={(e) => setContent(e.target.value)}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 min-h-[200px] text-black placeholder:text-black bg-white"
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 min-h-[200px] text-black placeholder:text-black bg-white"
                             placeholder="Write your content here..."
                             required
                         />
@@ -205,7 +205,7 @@ export default function CreatePage() {
                                 id="image"
                                 accept="image/*"
                                 onChange={handleImageChange}
-                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                                className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 bg-white"
                             />
                         ) : (
                             <div className="relative">
@@ -239,15 +239,15 @@ export default function CreatePage() {
                             id="spotify"
                             value={spotifyUrl}
                             onChange={handleSpotifyUrlChange}
-                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 text-black placeholder:text-black bg-white"
+                            className="w-full px-3 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 text-black placeholder:text-black bg-white"
                             placeholder="Paste a Spotify track URL here..."
                         />
                         {trackData && (
                             <div className="mt-2 p-3 bg-gray-50 rounded-lg">
                                 <div className="flex items-center space-x-3">
-                                    <img 
-                                        src={trackData.image} 
-                                        alt={trackData.name} 
+                                    <img
+                                        src={trackData.image}
+                                        alt={trackData.name}
                                         className="w-12 h-12 rounded"
                                     />
                                     <div>

@@ -1,6 +1,9 @@
+/* eslint-disable */
+'use client';
+
 import React, { useState, useEffect, useRef } from 'react';
 import { toast } from 'react-hot-toast';
-import Header from '../components/Header';
+import Header from '@/components/Header';
 
 interface Message {
   sender: 'user' | 'ai';
@@ -56,7 +59,7 @@ export default function ChatPage() {
             'Content-Type': 'application/json',
             Authorization: 'Bearer rg_v1_r75gpxfxiqdpyzybrumcgfbs002haa8xkzrz_ngk',
           },
-          body: JSON.stringify({ 
+          body: JSON.stringify({
             userInput: input,
             personality: personality,
           }),

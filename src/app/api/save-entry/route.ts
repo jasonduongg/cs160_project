@@ -38,10 +38,34 @@ export async function POST(request: Request) {
         const fileContent = await readFile(filePath, 'utf-8');
         const entries = JSON.parse(fileContent);
 
-        //TODO: connect reagent to give vibes and color hex
-        const vibes = [""];
+        var song_name = "null";
+        var artist_name = "null";
+        if (spotifyTrack != null) {
+            song_name = spotifyTrack["name"];
+            artist_name = spotifyTrack["artist"];
+        }
+        const response = await fetch(
+            'https://noggin.rea.gent/innovative-kingfisher-4387',
+            {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+                Authorization: 'Bearer rg_v1_oxioypc0z1nx1jajr6agdggjoniwh6r0c9d3_ngk',
+              },
+              body: JSON.stringify({
+                // fill variables here.
+                "entry_text": content,
+                "song_name": song_name,
+                "artist_name": artist_name,
+              }),
+            }
+          ).then(response => response.text());
+
+        var responseJSON = JSON.parse(response);
+        responseJSON["vibes"] = responseJSON["vibes"].replace(/\s+/g, '');
+        const vibes = responseJSON["vibes"].split(",");
         const randomHex = Math.floor(Math.random() * 0xffffff).toString(16);
-        const colorHex = `#${randomHex.padStart(6, '0')}`;
+        const colorHex = responseJSON["color"];
 
         // Add new entry
         entries.entries.push({
