@@ -29,7 +29,7 @@ export default function LandingPage() {
       <Header />
 
       <section className="w-full text-center mt-16">
-        <h1 className="text-2xl font-semibold">Hi, James.</h1>
+        <h1 className="text-2xl font-semibold">Hi, Bjoern.</h1>
         <p className="text-lg mt-2">How are you feeling today?</p>
         <div className="grid grid-cols-5 gap-4 w-full max-w-md mx-auto mt-8">
           {moods.map((m) => (

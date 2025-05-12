@@ -136,7 +136,7 @@ export default function ChatPage() {
                         />
                       </div>
                       <div className="flex flex-col items-end mr-2 text-right">
-                        <p className="text-xs text-gray-500 mb-1">James</p>
+                        <p className="text-xs text-gray-500 mb-1">Bjoern</p>
                         <div className="p-3 rounded-lg text-sm max-w-xs bg-blue-100">
                           {msg.text}
                         </div>
