@@ -4,7 +4,8 @@ This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-
 
 1. Clone the repository:
 ```bash
-git clone <repository-url>
+git clone git@github.com:jasonduongg/cs160_project.git
+cd cs160_project
 ```
 
 2. Install dependencies:
@@ -19,4 +20,16 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Project Structure
+
+- `src/app/` - Contains the main application code
+- `public/` - Static assets like images and where the mock database is stored
+- `src/components/` - Reusable React components
+
+## Technologies Used
+
+- Next.js 14
+- React
+- TypeScript
+- Tailwind CSS
+
